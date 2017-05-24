@@ -10,6 +10,6 @@ router.get('/ratings', rating_controller.rating_list);
 router.post('/ratings', rating_controller.rating_create_post);
 
 // Get rating for restaurant
-router.get('/ratings/:name', rating_controller.rating_for_restaurant);
+router.get('/ratings/:restaurantId', rating_controller.rating_for_restaurant);
 
 module.exports = router;

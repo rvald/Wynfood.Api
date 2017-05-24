@@ -17,7 +17,7 @@ exports.rating_list = function(req, res, next) {
 
 // Get rating for a specific Restaurant
 exports.rating_for_restaurant = function(req, res, next) {
-    Rating.find({'restaurantName':  req.params.name })
+    Rating.find({'restaurantId':  parseInt(req.params.restaurantId) })
         .exec(function(err, restaurant_ratings) {
 
             if (err) {
@@ -33,17 +33,17 @@ exports.rating_for_restaurant = function(req, res, next) {
 // Add a new rating
 exports.rating_create_post = function(req, res) {
     
-    req.checkBody('restaurantName', 'Restaurant name must be included.').notEmpty()
+    req.checkBody('restaurantId', 'Restaurant id must be included.').notEmpty()
     req.checkBody('userName', 'Username must be included.').notEmpty()
     req.checkBody('text', 'Rating message must be included.').notEmpty()
     req.checkBody('value', 'Rating must have a value.').notEmpty()
     
-    req.sanitize('restaurantName').escape();
+    req.sanitize('restaurantId').escape();
     req.sanitize('userName').escape();
     req.sanitize('text').escape();
     req.sanitize('value').escape();
 
-    req.sanitize('restaurantName').trim();
+    req.sanitize('restaurantId').trim();
     req.sanitize('userName').trim();
     req.sanitize('text').trim();
     req.sanitize('value').trim();
@@ -52,7 +52,7 @@ exports.rating_create_post = function(req, res) {
 
     var rating = new Rating(
         {
-            restaurantName: req.body.restaurantName,
+            restaurantId: req.body.restaurantId,
             userName: req.body.userName,
             text: req.body.text,
             value: req.body.value,
