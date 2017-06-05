@@ -6,7 +6,7 @@ var RatingSchema = Schema(
     {
        
         restaurantId: { type: Number, required: true },
-        userName: { type: String, required: true },
+        userId: { type: Number, required: true },
         text: { type: String, required: true },
         value: { type: Number, required: true },
         created: { type: Date, deafult: Date.now }
