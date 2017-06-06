@@ -12,6 +12,7 @@ exports.rating_list = function(req, res, next) {
             } else {
                 res.status(200).json(ratings);
             }
+
         });
 };
 
@@ -27,6 +28,7 @@ exports.rating_for_restaurant = function(req, res, next) {
             } else {
                 res.status(200).json(restaurant_ratings);
             }
+
         });
 };
 
@@ -45,6 +47,7 @@ exports.rating_for_user = function(req, res, next) {
             } else {
                 res.status(200).json(user_ratings);
             }
+            
         });
 };
 
@@ -52,17 +55,17 @@ exports.rating_for_user = function(req, res, next) {
 exports.rating_create_post = function(req, res, next) {
     
     req.checkBody('restaurantId', 'Restaurant id must be included.').notEmpty()
-    req.checkBody('userId', 'User id must be included.').notEmpty()
+    req.checkBody('userName', 'Username must be included.').notEmpty()
     req.checkBody('text', 'Rating message must be included.').notEmpty()
     req.checkBody('value', 'Rating must have a value.').notEmpty()
     
     req.sanitize('restaurantId').escape();
-    req.sanitize('userId').escape();
+    req.sanitize('userName').escape();
     req.sanitize('text').escape();
     req.sanitize('value').escape();
 
     req.sanitize('restaurantId').trim();
-    req.sanitize('userId').trim();
+    req.sanitize('userName').trim();
     req.sanitize('text').trim();
     req.sanitize('value').trim();
 
@@ -71,7 +74,7 @@ exports.rating_create_post = function(req, res, next) {
     var rating = new Rating(
         {
             restaurantId: req.body.restaurantId,
-            userId: req.body.userId,
+            userName: req.body.userName,
             text: req.body.text,
             value: req.body.value,
             created: Date.now()
