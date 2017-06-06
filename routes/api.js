@@ -19,6 +19,9 @@ router.get('/ratings/user/:id', rating_controller.rating_for_user);
 // Get users
 router.get('/users', user_controller.user_list);
 
+// Get user
+router.get('/users/:id', user_controller.user);
+
 // Post new user
 router.post('/users', user_controller.user_create_post);
 

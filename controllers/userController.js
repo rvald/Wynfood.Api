@@ -15,6 +15,21 @@ exports.user_list = function(req, res, next) {
         });
 };
 
+// Get a user
+exports.user = function(req, res, next) {
+    User.find({'id':  parseInt(req.params.id) })
+        .exec(function(err, user) {
+
+            if (err) {
+                res.status(404).json('Records not found.');
+                return next(err);
+            
+            } else {
+                res.status(200).json(user);
+            }
+        });
+};
+
 // Add a new user
 exports.user_create_post = function(req, res, next) {
     
