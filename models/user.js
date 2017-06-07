@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 
 var UserSchema = Schema({
 
-    id: { type: Number, required: true  },
     userName: { type: String, required: true },
+    email: { type: String, required: true },
     created: { type: Date, default: Date.now }
 
 });

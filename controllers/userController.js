@@ -17,7 +17,7 @@ exports.user_list = function(req, res, next) {
 
 // Get a user
 exports.user = function(req, res, next) {
-    User.find({'id':  parseInt(req.params.id) })
+    User.find({'email':  req.params.email })
         .exec(function(err, user) {
 
             if (err) {
@@ -37,15 +37,16 @@ exports.user_create_post = function(req, res, next) {
     req.sanitize('userName').escape();
     req.sanitize('userName').trim();
 
-     req.checkBody('id', 'User id must be included.').notEmpty()
-    req.sanitize('id').escape();
-    req.sanitize('id').trim();
+    req.checkBody('email', 'Email must be included.').notEmpty()
+    req.sanitize('email').escape();
+    req.sanitize('email').trim();
+
    
     var errors = req.validationErrors();
 
     var user = new User(
         {
-            id: req.body.id,
+            email: req.body.email,
             userName: req.body.userName,
             created: Date.now()
         }
